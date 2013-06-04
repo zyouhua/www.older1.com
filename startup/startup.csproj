@@ -39,22 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\Account.cs" />
-    <Compile Include="Action\ActionMgr\Action.cs" />
-    <Compile Include="Action\ActionMgr\ActionMgr.cs" />
-    <Compile Include="Action\Item\Item.cs" />
-    <Compile Include="Action\Skill\Skill.cs" />
-    <Compile Include="Action\Task\Activity.cs" />
-    <Compile Include="Action\Task\Task.cs" />
-    <Compile Include="Application\Application.cs" />
-    <Compile Include="Application\ApplicationMgr.cs" />
-    <Compile Include="Application\User.cs" />
-    <Compile Include="Closed\Closed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
