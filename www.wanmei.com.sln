@@ -1,19 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "startup", "startup\startup.csproj", "{1A3A1C4E-DC54-419A-AE95-6AE53600797D}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A3A1C4E-DC54-419A-AE95-6AE53600797D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A3A1C4E-DC54-419A-AE95-6AE53600797D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A3A1C4E-DC54-419A-AE95-6AE53600797D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A3A1C4E-DC54-419A-AE95-6AE53600797D}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
