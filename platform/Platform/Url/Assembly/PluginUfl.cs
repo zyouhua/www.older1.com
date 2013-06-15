@@ -5,16 +5,17 @@
         public override void _runLoad(string nUrl)
         {
             base._runLoad(nUrl);
-            if (null == mAssembly)
+            this._runPlugin();
+        }
+
+        private void _runPlugin()
+        {
+            string namespace_ = this._getNamespace();
+            string pluginClass_ = namespace_ + ".Plugin";
+            IStartup start_ = base._findClass<IStartup>(pluginClass_);
+            if (null != start_)
             {
-                mAssembly = Assembly.LoadFrom(assemblyPath_);
-                string namespace_ = assemblyName_.Name;
-                string pluginClass_ = namespace_ + ".Plugin";
-                IStartup plugin_ = mAssembly.CreateInstance(pluginClass_) as IStartup;
-                if (null != plugin_)
-                {
-                    plugin_._runStart();
-                }
+                start_._runStart();
             }
         }
     }

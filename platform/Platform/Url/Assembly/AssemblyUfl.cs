@@ -19,30 +19,28 @@ namespace platform
                     mAssembly = i;
                 }
             }
+            if (null == mAssembly)
+            {
+                mAssembly = Assembly.LoadFrom(assemblyPath_);
+            }
             base._runLoad(nUrl);
         }
 
         public object _findClass(string nId)
         {
-            object result_ = mAssembly.CreateInstance(nId);
-            return result_;
+            return mAssembly.CreateInstance(nId);
         }
 
-        protected void _loadPlugin(string nUrl)
+        public __t _findClass<__t>(string nId) where __t : class
         {
-            UrlParser urlParser_ = new UrlParser(nUrl);
-            string assemblyPath_ = urlParser_._returnResult();
-            AssemblyName assemblyName_ = AssemblyName.GetAssemblyName(assemblyPath_);
-            AppDomain appDomain_ = AppDomain.CurrentDomain;
-            Assembly[] assemblies_ = appDomain_.GetAssemblies();
-            foreach (Assembly i in assemblies_)
-            {
-                if (string.Compare(i.FullName, assemblyName_.FullName) == 0)
-                {
-                    mAssembly = i;
-                }
-            }
-            base._runLoad(nUrl);
+            object result_ = mAssembly.CreateInstance(nId);
+            return (result_ as __t);
+        }
+
+        protected string _getNamespace()
+        {
+            AssemblyName assemblyName_ = mAssembly.GetName();
+            return assemblyName_.Name;
         }
 
         public AssemblyUfl()
