@@ -33,14 +33,12 @@ namespace platform
 
         public __t _findClass<__t>(string nId) where __t : class
         {
-            object result_ = mAssembly.CreateInstance(nId);
-            return (result_ as __t);
-        }
-
-        protected string _getNamespace()
-        {
             AssemblyName assemblyName_ = mAssembly.GetName();
-            return assemblyName_.Name;
+            string namespace_ = assemblyName_.Name;
+            string pluginClass_ = namespace_ + ".";
+            pluginClass_ += nId;
+            object result_ = mAssembly.CreateInstance(pluginClass_);
+            return (result_ as __t);
         }
 
         public AssemblyUfl()

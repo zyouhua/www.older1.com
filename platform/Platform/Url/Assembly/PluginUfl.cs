@@ -10,9 +10,7 @@
 
         private void _runPlugin()
         {
-            string namespace_ = this._getNamespace();
-            string pluginClass_ = namespace_ + ".Plugin";
-            IStartup start_ = base._findClass<IStartup>(pluginClass_);
+            IStartup start_ = base._findClass<IStartup>(@"Plugin");
             if (null != start_)
             {
                 start_._runStart();

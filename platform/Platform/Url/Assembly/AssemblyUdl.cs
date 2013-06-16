@@ -9,8 +9,10 @@ namespace platform
         public override void _runLoad(string nUrl)
         {
             base._runLoad(nUrl);
+
             string assemblyInfoUrl_ = nUrl + @"*$assembly.xml";
             mAssemblyInfo._runLoad(assemblyInfoUrl_);
+
             UdlHeadstream udlHeadstream_ = this._getUdlHeadstream();
             string fileName_ = udlHeadstream_._getFileName();
             UrlParser urlParser_ = new UrlParser(nUrl);
@@ -26,32 +28,47 @@ namespace platform
                     return;
                 }
             }
+
             UidSingleton uidSingleton_ = __singleton<UidSingleton>._instance();
+            IEnumerable<Rid> rids_ = mAssemblyDescriptor._getRids();
+            foreach (Rid i in rids_)
+            {
+                uidSingleton_._addRid(i);
+            }
+
+            IEnumerable<string> dependences_ = mAssemblyDescriptor._getDependences();
+            foreach (string i in dependences_)
+            {
+                this._loadAssemblyUfl(i);
+            }
+
             IEnumerable<Uid> uids_ = mAssemblyDescriptor._getUids();
             foreach (Uid i in uids_)
             {
                 uidSingleton_._addUid(i);
                 Uid uid_ = i._getUid();
                 string uidUrl_ = uid_._getOptimal();
-                this._loadAssembly(uidUrl_);
+                this._loadAssemblyUdl(uidUrl_);
             }
-            IEnumerable<Rid> rids_ = mAssemblyDescriptor._getRids();
-            foreach (Rid i in rids_)
+
+            IEnumerable<Uid> addins_ = mAssemblyDescriptor._getAddins();
+            foreach (Uid i in addins_)
             {
-                uidSingleton_._addRid(i);
+                uidSingleton_._addUid(i);
+                Uid uid_ = i._getUid();
+                string uidUrl_ = uid_._getOptimal();
+                this._loadAddins(uidUrl_);
             }
-            IEnumerable<string> dependences_ = mAssemblyDescriptor._getDependences();
-            foreach (string i in dependences_)
+
+            IEnumerable<string> plugins_ = mAssemblyDescriptor._getPlugins();
+            foreach (string i in plugins_)
             {
-                this._loadAssembly(i);
+                this._loadPlugins(i);
             }
-            mAssembly = Assembly.LoadFrom(assemblyPath_);
-            string namespace_ = assemblyName_.Name;
-            string pluginClass_ = namespace_ + ".Plugin";
-            IPlugin plugin_ = mAssembly.CreateInstance(pluginClass_) as IPlugin;
-            if (null != plugin_)
+
+            if (null == mAssembly)
             {
-                plugin_._startupPlugin();
+                mAssembly = Assembly.LoadFrom(assemblyPath_);
             }
         }
 
@@ -61,19 +78,38 @@ namespace platform
             return result_;
         }
 
-        void _loadAssembly(string nUrl)
+        public __t _findClass<__t>(string nId) where __t : class
         {
-            UrlParser urlParser_ = new UrlParser(nUrl);
-            if (urlParser_._isFile())
-            {
-                AssemblyUfl assemblyUfl_ = new AssemblyUfl();
-                assemblyUfl_._runLoad(nUrl);
-            }
-            else
-            {
-                AssemblyUdl assemblyUdl_ = new AssemblyUdl();
-                assemblyUdl_._runLoad(nUrl);
-            }
+            AssemblyName assemblyName_ = mAssembly.GetName();
+            string namespace_ = assemblyName_.Name;
+            string pluginClass_ = namespace_ + ".";
+            pluginClass_ += nId;
+            object result_ = mAssembly.CreateInstance(pluginClass_);
+            return (result_ as __t);
+        }
+
+        void _loadAssemblyUdl(string nUrl)
+        {
+            AssemblyUdl assemblyUdl_ = new AssemblyUdl();
+            assemblyUdl_._runLoad(nUrl);
+        }
+
+        void _loadAssemblyUfl(string nUrl)
+        {
+            AssemblyUfl assemblyUfl_ = new AssemblyUfl();
+            assemblyUfl_._runLoad(nUrl);
+        }
+
+        void _loadAddins(string nUrl)
+        {
+            AddinUdl addinUdl_ = new AddinUdl();
+            addinUdl_._runLoad(nUrl);
+        }
+
+        void _loadPlugins(string nUrl)
+        {
+            PluginUfl pluginUfl_ = new PluginUfl();
+            pluginUfl_._runLoad(nUrl);
         }
 
         public AssemblyUdl()

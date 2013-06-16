@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Url\Assembly\AddinUdl.cs" />
     <Compile Include="Platform\Platform\Culture\ICulture.cs" />
     <Compile Include="Platform\Platform\PlatformSingleton.cs" />
     <Compile Include="Platform\Platform\Process\IProcess.cs" />
