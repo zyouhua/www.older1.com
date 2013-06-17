@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\platform\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\platform\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,14 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Platform\Culture\Culture.cs" />
     <Compile Include="Platform\Url\Assembly\AddinUdl.cs" />
     <Compile Include="Platform\Platform\Culture\ICulture.cs" />
     <Compile Include="Platform\Platform\PlatformSingleton.cs" />
-    <Compile Include="Platform\Platform\Process\IProcess.cs" />
-    <Compile Include="Platform\Platform\Thread\IRunnable.cs" />
-    <Compile Include="Platform\Platform\Thread\IThread.cs" />
-    <Compile Include="Platform\Platform\Thread\Once.cs" />
-    <Compile Include="Platform\Platform\Thread\OncePool.cs" />
     <Compile Include="Platform\Serialize\Serialize\Key\IKeyDouble.cs" />
     <Compile Include="Platform\Serialize\Serialize\Key\IKeyFloat.cs" />
     <Compile Include="Platform\Serialize\Serialize\Key\IKeyI16.cs" />

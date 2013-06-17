@@ -508,33 +508,6 @@ namespace platform
             }
         }
 
-        public IThread _createThread()
-        {
-            Threados result_ = new Threados();
-            return result_;
-        }
-
-        public IProcess _createProcess(string nCommand, string nArguments)
-        {
-            ProcessStartInfo startInfo_ = null;
-            if (String.IsNullOrEmpty(nArguments))
-            {
-                startInfo_ = new ProcessStartInfo(nCommand);
-            }
-            else
-            {
-                startInfo_ = new ProcessStartInfo(nCommand, nArguments);
-            }
-            startInfo_.CreateNoWindow = false;
-            startInfo_.UseShellExecute = false;
-            startInfo_.RedirectStandardOutput = true;
-            startInfo_.RedirectStandardError = true;
-            startInfo_.RedirectStandardInput = false;
-            Processos result_ = new Processos();
-            result_.StartInfo = startInfo_;
-            return result_;
-        }
-
         public ISerialize _getReader(SerializeType_ nSerializeType)
         {
             if (nSerializeType == SerializeType_.mXml_)
@@ -556,10 +529,6 @@ namespace platform
             if (nSerializeType == SerializeType_.mXml_)
             {
                 return new XmlOSerialize();
-            }
-            else if (nSerializeType == SerializeType_.mBin_)
-            {
-                return new BinOSerialize();
             }
             else if (nSerializeType == SerializeType_.mTxt_)
             {
