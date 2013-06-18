@@ -204,7 +204,17 @@ namespace platform
         public bool _isFile()
         {
             bool result_ = false;
-            if (UrlType_.mUrl_ == mUrlType || UrlType_.mUid_ == mUrlType || UrlType_.mRid_ == mUrlType)
+            if (UrlType_.mUrl_ == mUrlType || UrlType_.mUid_ == mUrlType || UrlType_.mRid_ == mUrlType || UrlType_.mAddin_ == mUrlType || UrlType_.mPlugin_ == mUrlType)
+            {
+                result_ = mUrlStruct._isFile();
+            }
+            return result_;
+        }
+
+        public bool _isPlugin()
+        {
+            bool result_ = false;
+            if (UrlType_.mAddin_ == mUrlType || UrlType_.mPlugin_ == mUrlType)
             {
                 result_ = mUrlStruct._isFile();
             }
@@ -276,6 +286,16 @@ namespace platform
             else if (mUrl.StartsWith(@"cid://"))
             {
                 this._cidUrl(mUrl);
+            }
+            else if (mUrl.StartsWith(@"addin://"))
+            {
+                this._uidUrl(mUrl);
+                mUrlType = UrlType_.mAddin_;
+            }
+            else if (mUrl.StartsWith(@"plugin://"))
+            {
+                this._urlUrl(mUrl);
+                mUrlType = UrlType_.mPlugin_;
             }
             else if (mUrl.StartsWith(@"http://"))
             {

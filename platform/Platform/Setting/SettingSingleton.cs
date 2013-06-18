@@ -16,11 +16,18 @@ namespace platform
             return @"setting";
         }
 
-        public void _runInit()
+        public void _runInit(string nPath = null)
         {
-            Assembly assembly = typeof(SettingSingleton).Assembly;
-            string path_ = Path.GetDirectoryName(assembly.Location);
-            mSystemPath = Path.Combine(path_, "..");
+            if (null == nPath)
+            {
+                Assembly assembly = typeof(SettingSingleton).Assembly;
+                string path_ = Path.GetDirectoryName(assembly.Location);
+                mSystemPath = Path.Combine(path_, "..");
+            }
+            else
+            {
+                mSystemPath = nPath;
+            }
             string rootPath_ = Path.Combine(mSystemPath, "..");
             mUrlDirectory = Path.Combine(rootPath_, "home");
         }

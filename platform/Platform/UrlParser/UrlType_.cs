@@ -9,6 +9,8 @@
         mCid_,
         mRid_,
         mUid_,
+        mAddin_,
+        mPlugin_,
         mUrl_
     }
 }

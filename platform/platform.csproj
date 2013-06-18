@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\platform\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\AppUrl\AppUrl.cs" />
     <Compile Include="Platform\Platform\Culture\Culture.cs" />
     <Compile Include="Platform\Url\Assembly\AddinUdl.cs" />
     <Compile Include="Platform\Platform\Culture\ICulture.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Platform\Utility\__tuple.cs" />
     <Compile Include="Platform\Serialize\Xml\XmlISerialize.cs" />
     <Compile Include="Platform\Serialize\Xml\XmlOSerialize.cs" />
+    <Compile Include="Platform\Startup\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using System.Diagnostics;
 
 namespace platform
 {
@@ -473,18 +472,37 @@ namespace platform
             UrlParser urlParser_ = new UrlParser(nUrl);
             string assemblyUrl_ = urlParser_._noClassUrl();
             string className_ = urlParser_._className();
-            if (urlParser_._isFile())
+            if (urlParser_._isPlugin())
             {
-                AssemblyUfl assemblyUfl_ = new AssemblyUfl();
-                assemblyUfl_._runLoad(assemblyUrl_);
-                result_ = (__t)assemblyUfl_._findClass(className_);
+                if (urlParser_._isFile())
+                {
+                    PluginUfl pluginUlf_ = new PluginUfl();
+                    pluginUlf_._runLoad(assemblyUrl_);
+                    result_ = pluginUlf_._findFullClass<__t>(className_);
+                }
+                else
+                {
+                    AddinUdl addinUdl_ = new AddinUdl();
+                    addinUdl_._runLoad(assemblyUrl_);
+                    result_ = addinUdl_._findFullClass<__t>(className_);
+                }
             }
             else
             {
-                AssemblyUdl assemblyUdl_ = new AssemblyUdl();
-                assemblyUdl_._runLoad(assemblyUrl_);
-                result_ = (__t)assemblyUdl_._findClass(className_);
+                if (urlParser_._isFile())
+                {
+                    AssemblyUfl assemblyUfl_ = new AssemblyUfl();
+                    assemblyUfl_._runLoad(assemblyUrl_);
+                    result_ = assemblyUfl_._findFullClass<__t>(className_);
+                }
+                else
+                {
+                    AssemblyUdl assemblyUdl_ = new AssemblyUdl();
+                    assemblyUdl_._runLoad(assemblyUrl_);
+                    result_ = assemblyUdl_._findFullClass<__t>(className_);
+                }
             }
+
             return result_;
         }
 
@@ -538,6 +556,13 @@ namespace platform
             {
                 return null;
             }
+        }
+
+        public void _startApp(string nAppUrl)
+        {
+            AppUrl appUrl_ = this._findHeadstream<AppUrl>(nAppUrl);
+            IStartup startup_ = this._findInterface<IStartup>(appUrl_._getAppUrl());
+            startup_._runStart();
         }
     }
 }

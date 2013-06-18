@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="platform.PluginUfl" Collapsed="true">
-    <Position X="3.75" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Platform\Url\Assembly\PluginUfl.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="platform.AddinUdl" Collapsed="true">
-    <Position X="1.5" Y="1" Width="1.5" />
+  <Class Name="platform.Startup">
+    <Position X="1.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Platform\Url\Assembly\AddinUdl.cs</FileName>
+      <FileName>Platform\Startup\Startup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="微软雅黑" Size="9" />

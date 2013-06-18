@@ -72,10 +72,10 @@ namespace platform
             }
         }
 
-        public object _findClass(string nId)
+        public __t _findFullClass<__t>(string nId)
         {
             object result_ = mAssembly.CreateInstance(nId);
-            return result_;
+            return (__t)result_;
         }
 
         public __t _findClass<__t>(string nId) where __t : class
