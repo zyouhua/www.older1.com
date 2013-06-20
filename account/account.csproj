@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\home\www.wanmei.com\weibo\^arc^weibo\</OutputPath>
+    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^account\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\home\www.wanmei.com\weibo\^arc^weibo\</OutputPath>
+    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^account\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,8 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountMgr\AccountC.cs" />
+    <Compile Include="AccountMgr\AccountB.cs" />
+    <Compile Include="AccountMgr\AccountConfig.cs" />
     <Compile Include="AccountMgr\Account.cs" />
     <Compile Include="AccountMgr\AccountMgr.cs" />
+    <Compile Include="AccountMgr\AccountService.cs" />
+    <Compile Include="AccountMgr\ErrorCode_.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\Startup.cs" />
   </ItemGroup>
@@ -59,6 +64,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="%24descriptor.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\accountConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

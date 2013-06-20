@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Utility\HashString.cs" />
     <Compile Include="Platform\AppUrl\AppUrl.cs" />
     <Compile Include="Platform\Platform\Culture\Culture.cs" />
     <Compile Include="Platform\Url\Assembly\AddinUdl.cs" />

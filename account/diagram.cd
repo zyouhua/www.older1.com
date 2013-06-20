@@ -1,4 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="account.AccountConfig" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAIAAAAAAAAAAAACAAEAAAA=</HashCode>
+      <FileName>AccountMgr\AccountConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account.AccountB" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAACAIAACAAAAAAAAAAAIAAIAAAAAAAAAAAAUAAAA=</HashCode>
+      <FileName>AccountMgr\AccountB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account.AccountC" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AccountMgr\AccountC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="account.ErrorCode_" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>AccountMgr\ErrorCode_.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="微软雅黑" Size="9" />
 </ClassDiagram>
