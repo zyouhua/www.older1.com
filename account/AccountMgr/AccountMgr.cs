@@ -9,6 +9,11 @@ namespace account
 {
     public class AccountMgr
     {
+        public __tuple<ErrorCode_, AccountC> _loginAccount(string nAccountName, string nPassward)
+        {
+            uint hashAccount_ = HashString._runHash(nAccountName, 0x200);
+        }
+
         public ErrorCode_ _createAccount(string nAccountName, string nPassward)
         {
             uint hashAccount_ = HashString._runHash(nAccountName, 0x200);

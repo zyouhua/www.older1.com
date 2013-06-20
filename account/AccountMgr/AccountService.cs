@@ -21,11 +21,13 @@ namespace account
 
         public __tuple<ErrorCode_, AccountC> _loginAccount(string nAccountName, string nPassward)
         {
-            ErrorCode_ errorCode_ = ErrorCode_.mNone_;
-        }
+            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
+            uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
+            int accountMgrIndex_ = (int)(hashName_ % accountMgrCount_);
+            AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
 
-        public ErrorCode_ _logoutAccount(uint nHashName, uint nHashAccount, uint nAccountId)
-        {
+            return accountMgr_._loginAccount(nAccountName, nPassward);
         }
 
         public bool _isAccountLogin(uint nHashName, uint nHashAccount, uint nAccountId)
