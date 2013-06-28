@@ -14,25 +14,26 @@ namespace account
             uint hashName_ = HashString._runHash(nAccountName, 0x100);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
-            int accountMgrIndex_ = (int)(hashName_ % accountMgrCount_);
+            uint accountMgrIndex_ = hashName_ % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
             return accountMgr_._createAccount(nAccountName, nPassward);
         }
 
         public __tuple<ErrorCode_, AccountC> _loginAccount(string nAccountName, string nPassward)
         {
-            ErrorCode_ errorCode_ = ErrorCode_.mNone_;
-        }
-
-        public ErrorCode_ _logoutAccount(uint nHashName, uint nHashAccount, uint nAccountId)
-        {
+            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
+            uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
+            uint accountMgrIndex_ = hashName_ % accountMgrCount_;
+            AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
+            return accountMgr_._loginAccount(nAccountName, nPassward);
         }
 
         public bool _isAccountLogin(uint nHashName, uint nHashAccount, uint nAccountId)
         {
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
-            int accountMgrIndex_ = (int)(nHashName % accountMgrCount_);
+            uint accountMgrIndex_ = nHashName % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
             Account account_ = accountMgr_._getAccount(nHashAccount);
             if (null == account_)
@@ -54,18 +55,18 @@ namespace account
             platformSingleton_._loadHeadstream<AccountConfig>(accountConfig_, accountConfigUrl_);
 
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
-            for (int i = 0; i < accountMgrCount_; ++i)
+            for (uint i = 0; i < accountMgrCount_; ++i)
             {
                 AccountMgr accountMgr_ = new AccountMgr();
-                mAccountMgrs.Add(accountMgr_);
+                mAccountMgrs[i] = accountMgr_;
             }
         }
 
         public AccountService()
         {
-            mAccountMgrs = new List<AccountMgr>();
+            mAccountMgrs = new Dictionary<uint, AccountMgr>();
         }
 
-        List<AccountMgr> mAccountMgrs;
+        Dictionary<uint, AccountMgr> mAccountMgrs;
     }
 }

@@ -1,22 +1,39 @@
-﻿using platform;
+﻿using System;
+
+using platform;
 
 namespace account
 {
-    public class AccountB : Headstream
+    public class AccountB : ISqlStream
     {
-        public override void _headSerialize(ISerialize nSerialize)
+        public string _loginWhere(uint nAccountId)
         {
-            nSerialize._serialize(ref mAccountName, @"name");
-            nSerialize._serialize(ref mPassward, @"passward");
+            string result_ = "`Id` = `";
+            result_ += Convert.ToString(nAccountId);
+            result_ += "`";
+            return result_;
         }
 
-        public override string _streamName()
+        public void _serialize(ISqlSerialize nSqlSerialize)
         {
-            return "account";
+            nSqlSerialize._serialize(ref mAccountId, @"Id");
+            nSqlSerialize._serialize(ref mAccountName, @"Name");
+            nSqlSerialize._serialize(ref mPassward, @"Passward");
+        }
+
+        public string _streamName()
+        {
+            return "Account";
+        }
+
+        public uint _getAccountId()
+        {
+            return mAccountId;
         }
 
         public void _setAccountName(string nAccountName)
         {
+            mAccountId = HashString._runHash(nAccountName, 0x200);
             mAccountName = nAccountName;
         }
 
@@ -37,10 +54,12 @@ namespace account
 
         public AccountB()
         {
+            mAccountId = 0;
             mAccountName = null;
             mPassward = null;
         }
 
+        uint mAccountId;
         string mAccountName;
         string mPassward;
     }

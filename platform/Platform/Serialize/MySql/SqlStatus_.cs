@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace account
+namespace platform
 {
-    public enum ErrorCode_ : uint
+    public enum SqlStatus_
     {
         mNone_,
         mSucess_,
-        mFail_,
-        mPassward_
+        mFail_
     }
 }

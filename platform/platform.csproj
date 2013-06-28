@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Serialize\MySql\MySqlWhere.cs" />
+    <Compile Include="Platform\Serialize\MySql\MySqlDataReaderSerialize.cs" />
+    <Compile Include="Platform\Log\ILog.cs" />
+    <Compile Include="Platform\Log\LogSingleton.cs" />
+    <Compile Include="Platform\Serialize\MySql\MySqlSelect.cs" />
+    <Compile Include="Platform\Serialize\MySql\ISqlSerialize.cs" />
+    <Compile Include="Platform\Serialize\MySql\MySqlSingleton.cs" />
+    <Compile Include="Platform\Serialize\MySql\MySqlInsert.cs" />
     <Compile Include="Platform\Utility\HashString.cs" />
     <Compile Include="Platform\AppUrl\AppUrl.cs" />
     <Compile Include="Platform\Platform\Culture\Culture.cs" />
@@ -136,6 +146,8 @@
     <Compile Include="Platform\Serialize\Xml\XmlISerialize.cs" />
     <Compile Include="Platform\Serialize\Xml\XmlOSerialize.cs" />
     <Compile Include="Platform\Startup\Startup.cs" />
+    <Compile Include="Platform\Serialize\MySql\SqlStatus_.cs" />
+    <Compile Include="Platform\Serialize\MySql\ISqlStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

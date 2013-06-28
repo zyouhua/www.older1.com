@@ -2,6 +2,14 @@
 {
     public class Account
     {
+        public AccountC _getAccountC()
+        {
+            AccountC accountC_ = new AccountC();
+            accountC_.m_tAccountId = mAccountId;
+            accountC_.m_tTicks = mTicks;
+            return accountC_;
+        }
+
         public void _setTicks(long nTicks)
         {
             mTicks = nTicks;

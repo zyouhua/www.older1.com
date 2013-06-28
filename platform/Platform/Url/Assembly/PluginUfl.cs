@@ -10,7 +10,7 @@
 
         private void _runPlugin()
         {
-            IStartup start_ = base._findClass<IStartup>(@"Plugin");
+            IStartup start_ = base._findClass<IStartup>(@"Startup");
             if (null != start_)
             {
                 start_._runStart();

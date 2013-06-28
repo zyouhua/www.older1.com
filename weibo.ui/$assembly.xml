@@ -1,14 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <assemblyDescriptor>
-
+  
   <dependences />
-
+  
   <rids />
-
+  
   <uids />
-
-  <addins />
-
+  
+  <addins>
+    
+    <__t id="weibo"
+     isInclude="false"
+     include="url://www.wanmei.com/weibo\weibo"
+     optimal=""
+     forceUsed="false"/>
+    
+    <__t id="account"
+         isInclude="false"
+         include="url://www.wanmei.com/account\account"
+         optimal=""
+         forceUsed="false" />
+    
+  </addins>
+  
   <plugins />
   
 </assemblyDescriptor>

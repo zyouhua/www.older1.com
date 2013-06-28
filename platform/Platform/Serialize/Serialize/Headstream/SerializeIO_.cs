@@ -4,6 +4,7 @@
     {
         mError_,
         mInput_,
-        mOutput_
+        mOutput_,
+        mSql_
     }
 }
