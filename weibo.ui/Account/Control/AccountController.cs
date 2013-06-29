@@ -21,5 +21,10 @@ namespace weibo.ui
             AccountService accountService_ = __singleton<AccountService>._instance();
             return accountService_._createAccount(nName, nPassward);
         }
+
+        public string _test()
+        {
+            return "hello world!";
+        }
     }
 }
