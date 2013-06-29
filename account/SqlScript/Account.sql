@@ -1,0 +1,6 @@
+﻿CREATE  TABLE `Account` (
+  `Id` INT(10) UNSIGNED NOT NULL ,
+  `Name` VARCHAR(45) NOT NULL ,
+  `Passward` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`Id`) )
+ENGINE = MyISAM;
