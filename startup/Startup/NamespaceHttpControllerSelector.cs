@@ -12,7 +12,7 @@ namespace startup
 {
     public class NamespaceHttpControllerSelector : DefaultHttpControllerSelector
     {
-        private const string NamespaceRouteVariableName = "namespaceName";
+        private const string NamespaceRouteVariableName = "namespaces";
         private readonly HttpConfiguration _configuration;
         private readonly Lazy<ConcurrentDictionary<string, Type>> _apiControllerCache;
 

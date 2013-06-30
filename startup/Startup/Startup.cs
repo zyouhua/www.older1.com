@@ -19,6 +19,7 @@ namespace startup
 
         static void _initMvcEngine()
         {
+
             Assembly assembly = Assembly.GetAssembly(typeof(MvcApplication));
             MvcEngineSingleton mvcEngineSingleton_ = __singleton<MvcEngineSingleton>._instance();
             mvcEngineSingleton_._addAssembly(assembly);

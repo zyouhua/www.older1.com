@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.Mvc;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -22,9 +21,14 @@ namespace weibo.ui
             return accountService_._createAccount(nName, nPassward);
         }
 
-        public string _test()
+        // GET api/values
+        [HttpGet]
+        public TestModle test()
         {
-            return "hello world!";
+            TestModle te = new TestModle();
+            te.mId = 10;
+            te.mName = @"te";
+            return te;
         }
     }
 }
