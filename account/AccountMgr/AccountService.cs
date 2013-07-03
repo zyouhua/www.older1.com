@@ -19,7 +19,7 @@ namespace account
             return accountMgr_._createAccount(nAccountName, nPassward);
         }
 
-        public __tuple<ErrorCode_, AccountC> _loginAccount(string nAccountName, string nPassward)
+        public AccountC _loginAccount(string nAccountName, string nPassward)
         {
             uint hashName_ = HashString._runHash(nAccountName, 0x100);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
@@ -58,6 +58,7 @@ namespace account
             for (uint i = 0; i < accountMgrCount_; ++i)
             {
                 AccountMgr accountMgr_ = new AccountMgr();
+                accountMgr_._setId(i);
                 mAccountMgrs[i] = accountMgr_;
             }
         }

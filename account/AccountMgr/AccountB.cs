@@ -8,9 +8,8 @@ namespace account
     {
         public string _loginWhere(uint nAccountId)
         {
-            string result_ = "`Id` = `";
+            string result_ = "`Id` = ";
             result_ += Convert.ToString(nAccountId);
-            result_ += "`";
             return result_;
         }
 
@@ -23,7 +22,12 @@ namespace account
 
         public string _streamName()
         {
-            return "Account";
+            return ("Account_" + mAccountMgrId);
+        }
+
+        public void _setMgrId(uint nId)
+        {
+            mAccountMgrId = nId;
         }
 
         public uint _getAccountId()
@@ -57,8 +61,10 @@ namespace account
             mAccountId = 0;
             mAccountName = null;
             mPassward = null;
+            mAccountMgrId = 0;
         }
 
+        uint mAccountMgrId;
         uint mAccountId;
         string mAccountName;
         string mPassward;

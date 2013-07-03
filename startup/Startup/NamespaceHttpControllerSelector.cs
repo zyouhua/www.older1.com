@@ -1,89 +1,129 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.Routing;
 
 namespace startup
 {
-    public class NamespaceHttpControllerSelector : DefaultHttpControllerSelector
+    public class NamespaceHttpControllerSelector : IHttpControllerSelector
     {
-        private const string NamespaceRouteVariableName = "namespaces";
+        private const string NamespaceKey = "namespace";
+        private const string ControllerKey = "controller";
+
         private readonly HttpConfiguration _configuration;
-        private readonly Lazy<ConcurrentDictionary<string, Type>> _apiControllerCache;
+        private readonly Lazy<Dictionary<string, HttpControllerDescriptor>> _controllers;
+        private readonly HashSet<string> _duplicates;
 
-        public NamespaceHttpControllerSelector(HttpConfiguration configuration)
-            : base(configuration)
+        public NamespaceHttpControllerSelector(HttpConfiguration config)
         {
-            _configuration = configuration;
-            _apiControllerCache = new Lazy<ConcurrentDictionary<string, Type>>(
-                new Func<ConcurrentDictionary<string, Type>>(InitializeApiControllerCache));
+            _configuration = config;
+            _duplicates = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            _controllers = new Lazy<Dictionary<string, HttpControllerDescriptor>>(InitializeControllerDictionary);
         }
 
-        private ConcurrentDictionary<string, Type> InitializeApiControllerCache()
+        private Dictionary<string, HttpControllerDescriptor> InitializeControllerDictionary()
         {
-            IAssembliesResolver assembliesResolver = this._configuration.Services.GetAssembliesResolver();
-            var types = this._configuration.Services.GetHttpControllerTypeResolver()
-                .GetControllerTypes(assembliesResolver).ToDictionary(t => t.FullName, t => t);
+            var dictionary = new Dictionary<string, HttpControllerDescriptor>(StringComparer.OrdinalIgnoreCase);
 
-            return new ConcurrentDictionary<string, Type>(types);
+            // Create a lookup table where key is "namespace.controller". The value of "namespace" is the last
+            // segment of the full namespace. For example:
+            // MyApplication.Controllers.V1.ProductsController => "V1.Products"
+            IAssembliesResolver assembliesResolver = _configuration.Services.GetAssembliesResolver();
+            IHttpControllerTypeResolver controllersResolver = _configuration.Services.GetHttpControllerTypeResolver();
+
+            ICollection<Type> controllerTypes = controllersResolver.GetControllerTypes(assembliesResolver);
+
+            foreach (Type t in controllerTypes)
+            {
+                // For the dictionary key, strip "Controller" from the end of the type name.
+                // This matches the behavior of DefaultHttpControllerSelector.
+                var controllerName = t.Name.Remove(t.Name.Length - DefaultHttpControllerSelector.ControllerSuffix.Length);
+
+                var key = String.Format(CultureInfo.InvariantCulture, "{0}.{1}", t.Namespace, controllerName);
+
+                // Check for duplicate keys.
+                if (dictionary.Keys.Contains(key))
+                {
+                    _duplicates.Add(key);
+                }
+                else
+                {
+                    dictionary[key] = new HttpControllerDescriptor(_configuration, t.Name, t);  
+                }
+            }
+
+            // Remove any duplicates from the dictionary, because these create ambiguous matches. 
+            // For example, "Foo.V1.ProductsController" and "Bar.V1.ProductsController" both map to "v1.products".
+            foreach (string s in _duplicates)
+            {
+                dictionary.Remove(s);
+            }
+            return dictionary;
         }
 
-        public IEnumerable<string> GetControllerFullName(HttpRequestMessage request, string controllerName)
+        // Get a value from the route data, if present.
+        private static T GetRouteVariable<T>(IHttpRouteData routeData, string name)
         {
-            object namespaceName;
-            var data = request.GetRouteData();
-            IEnumerable<string> keys = _apiControllerCache.Value.ToDictionary<KeyValuePair<string, Type>, string, Type>(t => t.Key,
-                    t => t.Value, StringComparer.CurrentCultureIgnoreCase).Keys.ToList();
-
-            if (!data.Values.TryGetValue(NamespaceRouteVariableName, out namespaceName))
+            object result = null;
+            if (routeData.Values.TryGetValue(name, out result))
             {
-                return from k in keys
-                       where k.EndsWith(string.Format(".{0}{1}", controllerName,
-                       DefaultHttpControllerSelector.ControllerSuffix), StringComparison.CurrentCultureIgnoreCase)
-                       select k;
+                return (T)result;
             }
-
-            string[] namespaces = (string[])namespaceName;
-            return from n in namespaces
-                   join k in keys on string.Format("{0}.{1}{2}", n, controllerName,
-                   DefaultHttpControllerSelector.ControllerSuffix).ToLower() equals k.ToLower()
-                   select k;
+            return default(T);
         }
 
-        public override HttpControllerDescriptor SelectController(HttpRequestMessage request)
+        public HttpControllerDescriptor SelectController(HttpRequestMessage request)
         {
-            Type type;
-            if (request == null)
+            IHttpRouteData routeData = request.GetRouteData();
+            if (routeData == null)
             {
-                throw new ArgumentNullException("request");
-            }
-            string controllerName = this.GetControllerName(request);
-            if (string.IsNullOrEmpty(controllerName))
-            {
-                throw new HttpResponseException(request.CreateErrorResponse(HttpStatusCode.NotFound,
-                    string.Format("No route providing a controller name was found to match request URI '{0}'",
-                    new object[] { request.RequestUri })));
-            }
-            IEnumerable<string> fullNames = GetControllerFullName(request, controllerName);
-            if (fullNames.Count() == 0)
-            {
-                throw new HttpResponseException(request.CreateErrorResponse(HttpStatusCode.NotFound,
-                        string.Format("No route providing a controller name was found to match request URI '{0}'",
-                        new object[] { request.RequestUri })));
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            if (this._apiControllerCache.Value.TryGetValue(fullNames.First(), out type))
+            // Get the namespace and controller variables from the route data.
+            string namespaceName = GetRouteVariable<string>(routeData, NamespaceKey);
+            if (namespaceName == null)
             {
-                return new HttpControllerDescriptor(_configuration, controllerName, type);
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            throw new HttpResponseException(request.CreateErrorResponse(HttpStatusCode.NotFound,
-                string.Format("No route providing a controller name was found to match request URI '{0}'",
-                new object[] { request.RequestUri })));
+
+            string controllerName = GetRouteVariable<string>(routeData, ControllerKey);
+            if (controllerName == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            // Find a matching controller.
+            string key = String.Format(CultureInfo.InvariantCulture, "{0}.{1}", namespaceName, controllerName);
+
+            HttpControllerDescriptor controllerDescriptor;
+            if (_controllers.Value.TryGetValue(key, out controllerDescriptor))
+            {
+                return controllerDescriptor;
+            }
+            else if (_duplicates.Contains(key))
+            {
+                throw new HttpResponseException(
+                    request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                    "Multiple controllers were found that match this request."));
+            }
+            else
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+        }
+
+        public IDictionary<string, HttpControllerDescriptor> GetControllerMapping()
+        {
+            return _controllers.Value;
         }
     }
 }

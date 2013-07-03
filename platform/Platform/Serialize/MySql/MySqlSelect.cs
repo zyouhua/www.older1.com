@@ -11,9 +11,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -23,9 +23,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -43,9 +43,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -63,9 +63,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -83,9 +83,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -103,9 +103,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -123,9 +123,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -143,9 +143,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -164,8 +164,8 @@ namespace platform
             if (false == mFirst)
             {
                 mFirst = false;
-                mColumn += @", ";
             }
+            mColumn += @", ";
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -184,8 +184,8 @@ namespace platform
             if (false == mFirst)
             {
                 mColumn += @", ";
-                mFirst = false;
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -204,8 +204,8 @@ namespace platform
             if (false == mFirst)
             {
                 mColumn += @", ";
-                mFirst = false;
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
@@ -223,9 +223,9 @@ namespace platform
         {
             if (false == mFirst)
             {
-                mFirst = false;
                 mColumn += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";

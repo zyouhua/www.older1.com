@@ -14,31 +14,32 @@ namespace account
             AccountB accountB_ = new AccountB();
             accountB_._setAccountName(nAccountName);
             accountB_._setPassward(nPassward);
+            accountB_._setMgrId(mId);
 
             MySqlInsert mySqlInsert_ = new MySqlInsert();
             mySqlInsert_._selectStream(accountB_._streamName());
             accountB_._serialize(mySqlInsert_);
             MySqlSingleton mySqlSingleton_ = __singleton<MySqlSingleton>._instance();
             SqlStatus_ status_ = mySqlSingleton_._runSql(mySqlInsert_);
-            if (SqlStatus_.mSucess_ == status_)
+            ErrorCode_ result_ = ErrorCode_.mSucess_;
+            if (SqlStatus_.mFail_ == status_)
             {
-                return ErrorCode_.mSucess_;
+                result_ = ErrorCode_.mFail_;
             }
-            else
-            {
-                return ErrorCode_.mFail_;
-            }
+            return result_;
         }
 
-        public __tuple<ErrorCode_, AccountC> _loginAccount(string nAccountName, string nPassward)
+        public AccountC _loginAccount(string nAccountName, string nPassward)
         {
             AccountB accountB_ = new AccountB();
+            accountB_._setMgrId(mId);
             MySqlSelect mySqlSelect_ = new MySqlSelect();
             mySqlSelect_._selectStream(accountB_._streamName());
+            accountB_._serialize(mySqlSelect_);
 
             uint accountId_ = HashString._runHash(nAccountName, 0x200);
             MySqlWhere mySqlWhere_ = new MySqlWhere();
-            mySqlSelect_._selectStream(accountB_._loginWhere(accountId_));
+            mySqlWhere_._selectStream(accountB_._loginWhere(accountId_));
 
             MySqlSingleton mySqlSingleton_ = __singleton<MySqlSingleton>._instance();
             SqlStatus_ status_ = mySqlSingleton_._runSql(mySqlSelect_, mySqlWhere_, accountB_);
@@ -65,7 +66,8 @@ namespace account
             {
                 errorCode_ = ErrorCode_.mPassward_;
             }
-            return new __tuple<ErrorCode_, AccountC>(errorCode_, accountC_);
+            accountC_.m_tErrorCode = errorCode_;
+            return accountC_;
         }
 
         public Account _getAccount(uint nAccount)

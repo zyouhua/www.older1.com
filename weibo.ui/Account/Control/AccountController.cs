@@ -15,20 +15,18 @@ namespace weibo.ui
     public class AccountController : ApiController
     {
         // GET api/values/5/4
+        [HttpGet]
         public ErrorCode_ _createAccount(string nName, string nPassward)
         {
             AccountService accountService_ = __singleton<AccountService>._instance();
             return accountService_._createAccount(nName, nPassward);
         }
 
-        // GET api/values
         [HttpGet]
-        public TestModle test()
+        public AccountC _loginAccount(string nName, string nPassward)
         {
-            TestModle te = new TestModle();
-            te.mId = 10;
-            te.mName = @"te";
-            return te;
+            AccountService accountService_ = __singleton<AccountService>._instance();
+            return accountService_._loginAccount(nName, nPassward);
         }
     }
 }

@@ -7,6 +7,18 @@ namespace account
 {
     public class AccountC
     {
+        public ErrorCode_ m_tErrorCode
+        {
+            get
+            {
+                return mErrorCode;
+            }
+            set
+            {
+                mErrorCode = value;
+            }
+        }
+
         public uint m_tAccountId
         {
             get
@@ -33,10 +45,12 @@ namespace account
 
         public AccountC()
         {
+            mErrorCode = ErrorCode_.mSucess_;
             mAccountId = 0;
             mTicks = 0;
         }
 
+        ErrorCode_ mErrorCode;
         uint mAccountId;
         long mTicks;
     }

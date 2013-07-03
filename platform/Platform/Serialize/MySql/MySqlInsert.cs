@@ -11,15 +11,15 @@ namespace platform
     {
         public void _serialize(ref bool nValue, string nName, bool nOptimal = default(bool))
         {
-            if (false == mFirst)
+            if (true == mFirst)
             {
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             if (true == nValue)
             {
                 mValues += "true";
@@ -28,7 +28,6 @@ namespace platform
             {
                 mValues += "true";
             }
-            mValues += "`";
         }
 
         public void _serialize(ref sbyte nValue, string nName, sbyte nOptimal = default(sbyte))
@@ -38,12 +37,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<sbyte, __t> nValue, string nName) where __t : IKeyI8
@@ -61,12 +59,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<byte, __t> nValue, string nName) where __t : IKeyU8
@@ -84,12 +81,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<short, __t> nValue, string nName) where __t : IKeyI16
@@ -107,12 +103,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<ushort, __t> nValue, string nName) where __t : IKeyU16
@@ -130,12 +125,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<int, __t> nValue, string nName) where __t : IKeyI32
@@ -153,12 +147,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<uint, __t> nValue, string nName) where __t : IKeyU32
@@ -176,12 +169,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<long, __t> nValue, string nName) where __t : IKeyI64
@@ -199,12 +191,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<ulong, __t> nValue, string nName) where __t : IKeyU64
@@ -222,12 +213,13 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
+            mValues += "'";
             mValues += nValue;
-            mValues += "`";
+            mValues += "'";
         }
 
         public void _serialize<__t>(ref Dictionary<string, __t> nValue, string nName) where __t : IKeyStr
@@ -245,12 +237,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<float, __t> nValue, string nName) where __t : IKeyFloat
@@ -268,12 +259,11 @@ namespace platform
                 mColumn += @", ";
                 mValues += @", ";
             }
+            mFirst = false;
             mColumn += "`";
             mColumn += nName;
             mColumn += "`";
-            mValues += "`";
             mValues += Convert.ToString(nValue);
-            mValues += "`";
         }
 
         public void _serialize<__t>(ref Dictionary<double, __t> nValue, string nName) where __t : IKeyDouble
