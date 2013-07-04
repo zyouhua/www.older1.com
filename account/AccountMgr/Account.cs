@@ -37,7 +37,7 @@ namespace account
             {
                 result_ = ErrorCode_.mDeviceType_;
             }
-            if (deviceStatus_._getId() != nDeviceId)
+            if ( (null != deviceStatus_) && (deviceStatus_._getId() != nDeviceId) )
             {
                 result_ = ErrorCode_.mDeviceId_;
             }
