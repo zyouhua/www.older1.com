@@ -23,10 +23,17 @@ namespace weibo.ui
         }
 
         [HttpGet]
-        public AccountC _loginAccount(string nName, string nPassward)
+        public AccountC _loginAccount(string nName, string nPassward, uint nDeviceType)
         {
             AccountService accountService_ = __singleton<AccountService>._instance();
-            return accountService_._loginAccount(nName, nPassward);
+            return accountService_._loginAccount(nName, nPassward, nDeviceType);
+        }
+
+        [HttpGet]
+        public ErrorCode_ _logoutAccount(string nName, uint nDeviceId, uint nDeviceType)
+        {
+            AccountService accountService_ = __singleton<AccountService>._instance();
+            return accountService_._logoutAccount(nName, nDeviceId, nDeviceType);
         }
     }
 }

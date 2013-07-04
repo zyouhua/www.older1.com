@@ -19,6 +19,18 @@ namespace account
             }
         }
 
+        public uint m_tDeviceId
+        {
+            get
+            {
+                return mDeviceId;
+            }
+            set
+            {
+                mDeviceId = value;
+            }
+        }
+
         public uint m_tAccountId
         {
             get
@@ -47,11 +59,13 @@ namespace account
         {
             mErrorCode = ErrorCode_.mSucess_;
             mAccountId = 0;
+            mDeviceId = 0;
             mTicks = 0;
         }
 
         ErrorCode_ mErrorCode;
         uint mAccountId;
+        uint mDeviceId;
         long mTicks;
     }
 }

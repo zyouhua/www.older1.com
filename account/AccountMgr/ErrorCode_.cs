@@ -7,9 +7,11 @@ namespace account
 {
     public enum ErrorCode_ : uint
     {
-        mNone_,
         mSucess_,
         mFail_,
-        mPassward_
+        mPassward_,
+        mDevice_,
+        mDeviceType_,
+        mDeviceId_
     }
 }

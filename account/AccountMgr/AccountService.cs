@@ -19,32 +19,39 @@ namespace account
             return accountMgr_._createAccount(nAccountName, nPassward);
         }
 
-        public AccountC _loginAccount(string nAccountName, string nPassward)
+        public AccountC _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
         {
             uint hashName_ = HashString._runHash(nAccountName, 0x100);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = hashName_ % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
-            return accountMgr_._loginAccount(nAccountName, nPassward);
+            return accountMgr_._loginAccount(nAccountName, nPassward, nDeviceType);
+        }
+
+        public ErrorCode_ _logoutAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
+        {
+            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
+            uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
+            uint accountMgrIndex_ = hashName_ % accountMgrCount_;
+            AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
+            return accountMgr_._logoutAccount(nAccountName, nDeviceId, nDeviceType);
         }
 
         public bool _isAccountLogin(uint nHashName, uint nHashAccount, uint nAccountId)
         {
+            bool result_ = false;
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = nHashName % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
             Account account_ = accountMgr_._getAccount(nHashAccount);
-            if (null == account_)
+            if ( (null != account_) && (account_._getAccountId() == nAccountId) )
             {
-                return false;
+                result_ = true;
             }
-            if (account_._getAccountId() != nAccountId)
-            {
-                return false;
-            }
-            return true;
+            return result_;
         }
 
         public void _runInit()

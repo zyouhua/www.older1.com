@@ -13,10 +13,11 @@ BEGIN
 	DECLARE tableCount INT DEFAULT 10;
 	WHILE i < tableCount
 	DO
-		SET @STMT := CONCAT("CREATE  TABLE `Account", FORMAT(i, 0), "` (
+		SET @STMT := CONCAT("CREATE  TABLE `Account_", FORMAT(i, 0), "` (
 					`Id` INT(10) UNSIGNED NOT NULL ,
 					`Name` VARCHAR(45) NOT NULL ,
 					`Passward` VARCHAR(45) NOT NULL ,
+					`CreateTime` BIGINT NOT NULL ,
 					PRIMARY KEY (`Id`) )
 					ENGINE = MYISAM  DEFAULT CHARSET=utf8;");
 		PREPARE STMT FROM @STMT;
