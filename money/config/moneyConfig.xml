@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<moneyConfig>
+  
+  <moneys>
+    
+    <__t Id="0" name="元" value="0" total="0" dayInc="0" dayDec="0" maxInc="0" maxDec="0" />
+    
+  </moneys>
+  
+</moneyConfig>

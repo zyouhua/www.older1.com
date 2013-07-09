@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="weibo.Startup">
-    <Position X="1" Y="0.75" Width="1.5" />
+  <Class Name="weibo.Last" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Startup\Startup.cs</FileName>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Last\Last.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="weibo.Status" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAQ=</HashCode>
+      <FileName>Last\Status.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="微软雅黑" Size="9" />
 </ClassDiagram>

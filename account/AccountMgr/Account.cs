@@ -5,22 +5,8 @@ using platform;
 
 namespace account
 {
-    public class Account
+    public class Account : PropertyMgr
     {
-        public AccountC _getAccountC(uint nDeviceType)
-        {
-            AccountC accountC_ = null;
-            if (mDeviceStatus.ContainsKey(nDeviceType))
-            {
-                accountC_ = new AccountC();
-                accountC_.m_tAccountId = mAccountId;
-                accountC_.m_tTicks = mTicks;
-                DeviceStatus deviceStatus_ = mDeviceStatus[nDeviceType];
-                accountC_.m_tDeviceId = deviceStatus_._getId();
-            }
-            return accountC_;
-        }
-
         public void _addDeviceType(uint nDeviceType)
         {
             DeviceStatus deviceStatus_ = new DeviceStatus();
@@ -46,6 +32,11 @@ namespace account
                 mDeviceStatus.Remove(nDeviceType);
             }
             return result_;
+        }
+
+        public bool _isOnline()
+        {
+            return (mDeviceStatus.Count > 0);
         }
 
         DeviceStatus _getDeviceStatus(uint nDeviceType)

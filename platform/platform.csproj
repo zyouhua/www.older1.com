@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Property\Property.cs" />
+    <Compile Include="Platform\Property\PropertyMgr.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlWhere.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlDataReaderSerialize.cs" />
     <Compile Include="Platform\Log\ILog.cs" />
@@ -148,6 +150,8 @@
     <Compile Include="Platform\Startup\Startup.cs" />
     <Compile Include="Platform\Serialize\MySql\SqlStatus_.cs" />
     <Compile Include="Platform\Serialize\MySql\ISqlStream.cs" />
+    <Compile Include="Platform\Property\PropertyId.cs" />
+    <Compile Include="Platform\Property\PropertyService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<assemblyDescriptor>
+
+  <dependences />
+
+  <rids>
+    
+    <__t id="money.moneyConfig"
+         url="url://www.wanmei.com/account\money/config*moneyConfig.xml" />
+
+  </rids>
+
+  <uids />
+
+  <addins />
+
+  <plugins />
+  
+</assemblyDescriptor>

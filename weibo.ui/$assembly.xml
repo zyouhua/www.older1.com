@@ -14,13 +14,19 @@
      include="url://www.wanmei.com/weibo\weibo"
      optimal=""
      forceUsed="false"/>
-    
+
     <__t id="account"
-         isInclude="false"
-         include="url://www.wanmei.com/account\account"
-         optimal=""
-         forceUsed="false" />
+     isInclude="false"
+     include="url://www.wanmei.com/account\account"
+     optimal=""
+     forceUsed="false" />
     
+    <__t id="money"
+     isInclude="false"
+     include="url://www.wanmei.com/account\money"
+     optimal=""
+     forceUsed="false" />
+
   </addins>
   
   <plugins />

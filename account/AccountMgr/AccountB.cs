@@ -64,6 +64,16 @@ namespace account
             return mAccountName;
         }
 
+        public void _setNickName(string nNickName)
+        {
+            mNickName = nNickName;
+        }
+
+        public string _getNickName()
+        {
+            return mNickName;
+        }
+
         public void _setPassward(string nPassward)
         {
             mPassward = nPassward;
@@ -88,6 +98,7 @@ namespace account
         {
             mAccountId = 0;
             mAccountName = null;
+            mNickName = null;
             mPassward = null;
             mAccountMgrId = 0;
             mTicks = 0;
@@ -96,6 +107,7 @@ namespace account
         uint mAccountMgrId;
         uint mAccountId;
         string mAccountName;
+        string mNickName;
         string mPassward;
         long mTicks;
     }

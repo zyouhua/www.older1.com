@@ -9,17 +9,17 @@ namespace account
 {
     public class AccountService
     {
-        public ErrorCode_ _createAccount(string nAccountName, string nPassward)
+        public ErrorCode_ _createAccount(string nAccountName, string nNickname, string nPassward)
         {
             uint hashName_ = HashString._runHash(nAccountName, 0x100);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = hashName_ % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
-            return accountMgr_._createAccount(nAccountName, nPassward);
+            return accountMgr_._createAccount(nAccountName, nNickname, nPassward);
         }
 
-        public AccountC _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
+        public __tuple<ErrorCode_, Account> _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
         {
             uint hashName_ = HashString._runHash(nAccountName, 0x100);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();

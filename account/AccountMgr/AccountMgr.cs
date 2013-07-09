@@ -9,10 +9,11 @@ namespace account
 {
     public class AccountMgr
     {
-        public ErrorCode_ _createAccount(string nAccountName, string nPassward)
+        public ErrorCode_ _createAccount(string nAccountName, string nNickname, string nPassward)
         {
             AccountB accountB_ = new AccountB();
             accountB_._setAccountName(nAccountName);
+            accountB_._setNickName(nNickname);
             accountB_._setPassward(nPassward);
             accountB_._setMgrId(mId);
             accountB_._setTicks(DateTime.Now.Ticks);
@@ -26,9 +27,8 @@ namespace account
             return _getErrorCode(sqlStatus_);
         }
 
-        public AccountC _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
+        public __tuple<ErrorCode_, Account> _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
         {
-            AccountC result_ = null;
             ErrorCode_ errorCode_ = this._checkDevice(nDeviceType);
             if (ErrorCode_.mSucess_ == errorCode_)
             {
@@ -40,10 +40,11 @@ namespace account
                     errorCode_ = accountB_._checkPassward(nPassward);
                 }
             }
+            Account account_ = null;
             if (ErrorCode_.mSucess_ == errorCode_)
             {
                 uint accountId_ = AccountB._accountId(nAccountName);
-                Account account_ = this._getAccount(accountId_);
+                account_ = this._getAccount(accountId_);
                 if (null == account_)
                 {
                     account_ = new Account();
@@ -52,14 +53,8 @@ namespace account
                     mAccounts[accountId_] = account_;
                 }
                 account_._setTicks(DateTime.Now.Ticks);
-                result_ = account_._getAccountC(nDeviceType);
             }
-            else
-            {
-                result_ = new AccountC();
-            }
-            result_.m_tErrorCode = errorCode_;
-            return result_;
+            return new __tuple<ErrorCode_, Account>(errorCode_, account_);
         }
 
         public ErrorCode_ _logoutAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
@@ -73,6 +68,10 @@ namespace account
             if (ErrorCode_.mSucess_ == result_)
             {
                 result_ = account_._logout(nDeviceId, nDeviceType);
+                if (!account_._isOnline())
+                {
+                    mAccounts.Remove(account_._getAccountId());
+                }
             }
             return result_;
         }
