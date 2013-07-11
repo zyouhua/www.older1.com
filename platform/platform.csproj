@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platform\Action\Action.cs" />
+    <Compile Include="Platform\Action\ActionId.cs" />
+    <Compile Include="Platform\Action\ActionService.cs" />
     <Compile Include="Platform\Property\Property.cs" />
     <Compile Include="Platform\Property\PropertyMgr.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlWhere.cs" />
@@ -152,10 +155,12 @@
     <Compile Include="Platform\Serialize\MySql\ISqlStream.cs" />
     <Compile Include="Platform\Property\PropertyId.cs" />
     <Compile Include="Platform\Property\PropertyService.cs" />
+    <Compile Include="Platform\Task\Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
