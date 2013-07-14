@@ -4,18 +4,18 @@
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Platform\Action\ActionId.cs</FileName>
+      <FileName>Platform\Task\Action\ActionId.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="platform.Action" Collapsed="true">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Platform\Action\Action.cs</FileName>
+      <FileName>Platform\Task\Action\Action.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="platform.Task">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+  <Class Name="platform.Task" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Platform\Task\Task.cs</FileName>

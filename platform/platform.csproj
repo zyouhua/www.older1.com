@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Platform\Action\Action.cs" />
-    <Compile Include="Platform\Action\ActionId.cs" />
-    <Compile Include="Platform\Action\ActionService.cs" />
+    <Compile Include="Platform\Task\Action\Action.cs" />
+    <Compile Include="Platform\Task\Action\ActionId.cs" />
+    <Compile Include="Platform\Task\Action\ActionService.cs" />
     <Compile Include="Platform\Property\Property.cs" />
     <Compile Include="Platform\Property\PropertyMgr.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlWhere.cs" />
