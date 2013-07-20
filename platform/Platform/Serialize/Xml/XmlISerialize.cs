@@ -971,6 +971,37 @@ namespace platform
             }
         }
 
+        //datetime
+        public void _serialize(ref DateTime nValue, string nName, DateTime nOptimal = default(DateTime))
+        {
+            nValue = nOptimal;
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null != xmlAttribute_)
+            {
+                string text_ = xmlAttribute_.InnerText;
+                nValue = Convert.ToDateTime(text_);
+            }
+        }
+
+        public void _serialize(ref List<DateTime> nValue, string nName)
+        {
+            if (null == nValue)
+            {
+                nValue = new List<DateTime>();
+            }
+            XmlNode xmlNode_ = mXmlNode.SelectSingleNode(nName);
+            if (null == xmlNode_)
+            {
+                return;
+            }
+            foreach (XmlNode i in xmlNode_.ChildNodes)
+            {
+                string text_ = i.InnerText;
+                DateTime value_ = Convert.ToDateTime(text_);
+                nValue.Add(value_);
+            }
+        }
+
         public void _serialize(ref float nValue, string nName, float nOptimal = default(float))
         {
             nValue = nOptimal;

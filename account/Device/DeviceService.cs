@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 using platform;
 
 namespace account
 {
-    public class DeviceMgr
+    public class DeviceService
     {
         public bool _contain(uint nDeviceType)
         {
@@ -24,7 +21,7 @@ namespace account
             mDeviceTypes.Add(cellphoneType_);
         }
 
-        public DeviceMgr()
+        public DeviceService()
         {
             mDeviceTypes = new SortedSet<uint>();
         }

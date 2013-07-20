@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace platform
 {
@@ -42,6 +43,9 @@ namespace platform
         void _serialize(ref string nValue, string nName, string nOptimal = default(string));
         void _serialize<__t>(ref Dictionary<string, __t> nValue, string nName) where __t : IKeyStr;
         void _serialize(ref List<string> nValue, string nName);
+        //datetime
+        void _serialize(ref DateTime nValue, string nName, DateTime nOptimal = default(DateTime));
+        void _serialize(ref List<DateTime> nValue, string nName);
         //__float
         void _serialize(ref float nValue, string nName, float nOptimal = default(float));
         void _serialize<__t>(ref Dictionary<float, __t> nValue, string nName) where __t : IKeyFloat;

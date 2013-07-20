@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 using platform;
 
@@ -11,11 +8,15 @@ namespace money
     {
         public MoneyMgr()
         {
-            mMoneys = new List<Money>();
+            mMoneys = new Dictionary<uint, Money>();
             MoneyConfig moneyConfig_ = __singleton<MoneyConfig>._instance();
-            moneyConfig_._getMoneys().ForEach(i => mMoneys.Add(i._clone()));
+            Dictionary<uint, Money> moneys_ = moneyConfig_._getMoneys();
+            foreach (KeyValuePair<uint, Money> i in moneys_)
+            {
+                mMoneys[i.Key] = i.Value;
+            }
         }
 
-        List<Money> mMoneys;
+        Dictionary<uint, Money> mMoneys;
     }
 }

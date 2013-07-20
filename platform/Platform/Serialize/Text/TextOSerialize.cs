@@ -319,6 +319,27 @@ namespace platform
             }
         }
 
+        public void _serialize(ref DateTime nValue, string nName, DateTime nOptimal = default(DateTime))
+        {
+            string s = Convert.ToString(nValue);
+            this._writeString(s);
+        }
+
+        public void _serialize(ref List<DateTime> nValue, string nName)
+        {
+            if (null == nValue)
+            {
+                nValue = new List<DateTime>();
+            }
+            int size_ = nValue.Count;
+            this._serialize(ref size_, null);
+            for (int i = 0; i < size_; i++)
+            {
+                DateTime temp_ = nValue[i];
+                this._serialize(ref temp_, null);
+            }
+        }
+
         public void _serialize(ref float nValue, string nName, float nOptimal = default(float))
         {
             string s = Convert.ToString(nValue);

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace platform
+﻿namespace platform
 {
     public class PropertyId<__t> : Property
     {
-        public static void _setPropertyId(int nPropertyId)
+        public static void _runInit()
         {
-            mPropertyId = nPropertyId;
+            mPropertyId = HashString._runHash(typeof(__t).FullName, 0x100);
         }
 
-        public static int _getPropertyId()
+        public static uint _getPropertyId()
         {
             return mPropertyId;
         }
 
-        static int mPropertyId;
+        static uint mPropertyId;
     }
 }

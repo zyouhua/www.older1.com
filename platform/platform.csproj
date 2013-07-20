@@ -42,9 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Platform\Task\Action\Action.cs" />
-    <Compile Include="Platform\Task\Action\ActionId.cs" />
-    <Compile Include="Platform\Task\Action\ActionService.cs" />
+    <Compile Include="Platform\Thread\MissionPool\Mission.cs" />
     <Compile Include="Platform\Property\Property.cs" />
     <Compile Include="Platform\Property\PropertyMgr.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlWhere.cs" />
@@ -55,6 +53,9 @@
     <Compile Include="Platform\Serialize\MySql\ISqlSerialize.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlSingleton.cs" />
     <Compile Include="Platform\Serialize\MySql\MySqlInsert.cs" />
+    <Compile Include="Platform\Thread\OncePool\IRunnable.cs" />
+    <Compile Include="Platform\Thread\OncePool\Once.cs" />
+    <Compile Include="Platform\Thread\OncePool\OncePool.cs" />
     <Compile Include="Platform\Utility\HashString.cs" />
     <Compile Include="Platform\AppUrl\AppUrl.cs" />
     <Compile Include="Platform\Platform\Culture\Culture.cs" />
@@ -154,8 +155,7 @@
     <Compile Include="Platform\Serialize\MySql\SqlStatus_.cs" />
     <Compile Include="Platform\Serialize\MySql\ISqlStream.cs" />
     <Compile Include="Platform\Property\PropertyId.cs" />
-    <Compile Include="Platform\Property\PropertyService.cs" />
-    <Compile Include="Platform\Task\Task.cs" />
+    <Compile Include="Platform\Thread\MissionPool\MissionPool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

@@ -446,6 +446,35 @@ namespace platform
             mXmlElement.AppendChild(root_);
         }
 
+        public void _serialize(ref DateTime nValue, string nName, DateTime nOptimal = default(DateTime))
+        {
+            if (nValue == nOptimal)
+            {
+                return;
+            }
+            XmlNode xmlAttribute_ = mXmlDocument.CreateNode(XmlNodeType.Attribute, nName, null);
+            string value_ = Convert.ToString(nValue);
+            xmlAttribute_.Value = value_;
+            mXmlElement.Attributes.SetNamedItem(xmlAttribute_);
+        }
+
+        public void _serialize(ref List<DateTime> nValue, string nName)
+        {
+            if (null == nValue)
+            {
+                return;
+            }
+            XmlElement root_ = mXmlDocument.CreateElement(nName);
+            foreach (DateTime i in nValue)
+            {
+                XmlElement child_ = mXmlDocument.CreateElement("__datetime");
+                string value_ = Convert.ToString(i);
+                child_.InnerText = value_;
+                root_.AppendChild(child_);
+            }
+            mXmlElement.AppendChild(root_);
+        }
+
         public void _serialize(ref float nValue, string nName, float nOptimal = default(float))
         {
             if (nValue == nOptimal)

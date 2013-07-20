@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using platform;
 
@@ -79,7 +77,7 @@ namespace account
         ErrorCode_ _checkDevice(uint nDeviceType)
         {
             ErrorCode_ result_ = ErrorCode_.mSucess_;
-            DeviceMgr deviceMgr_ = __singleton<DeviceMgr>._instance();
+            DeviceService deviceMgr_ = __singleton<DeviceService>._instance();
             if (!deviceMgr_._contain(nDeviceType))
             {
                 result_ = ErrorCode_.mDevice_;

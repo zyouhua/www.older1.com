@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using platform;
+﻿using platform;
 
 namespace money
 {
-    public class Money : Stream
+    public class Money : Stream, IKeyU32
     {
         public override void _serialize(ISerialize nSerialize)
         {
@@ -18,6 +13,11 @@ namespace money
             nSerialize._serialize(ref mDayDec, @"dayDec");
             nSerialize._serialize(ref mMaxInc, @"maxInc");
             nSerialize._serialize(ref mMaxDec, @"maxDec");
+        }
+
+        public uint _keyU32()
+        {
+            return mId;
         }
 
         public void _setId(uint nId)

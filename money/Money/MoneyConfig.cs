@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 using platform;
 
@@ -19,16 +16,16 @@ namespace money
             return @"moneyConfig";
         }
 
-        public List<Money> _getMoneys()
+        public Dictionary<uint, Money> _getMoneys()
         {
             return mMoneys;
         }
 
         public MoneyConfig()
         {
-            mMoneys = new List<Money>();
+            mMoneys = new Dictionary<uint, Money>();
         }
 
-        List<Money> mMoneys;
+        Dictionary<uint, Money> mMoneys;
     }
 }

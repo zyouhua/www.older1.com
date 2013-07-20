@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace platform
 {
-    public abstract class PropertyMgr
+    public class PropertyMgr
     {
         public __t _getProperty<__t>() where __t : PropertyId<__t>
         {
             __t result_ = default(__t);
-            int propertyId_ = PropertyId<__t>._getPropertyId();
+            uint propertyId_ = PropertyId<__t>._getPropertyId();
             if (mPropertys.ContainsKey(propertyId_))
             {
                 result_ = mPropertys[propertyId_] as __t;
@@ -20,7 +18,7 @@ namespace platform
 
         public void _addProperty<__t>(PropertyId<__t> nPropertyId)
         {
-            int propertyId_ = PropertyId<__t>._getPropertyId();
+            uint propertyId_ = PropertyId<__t>._getPropertyId();
             if (mPropertys.ContainsKey(propertyId_))
             {
                 LogSingleton logSingleton_ = __singleton<LogSingleton>._instance();
@@ -32,9 +30,9 @@ namespace platform
 
         public PropertyMgr()
         {
-            mPropertys = new Dictionary<int, Property>();
+            mPropertys = new Dictionary<uint, Property>();
         }
 
-        Dictionary<int, Property> mPropertys;
+        Dictionary<uint, Property> mPropertys;
     }
 }

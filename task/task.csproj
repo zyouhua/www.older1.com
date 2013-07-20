@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDF9274A-9029-4275-B848-82839A4CA98A}</ProjectGuid>
+    <ProjectGuid>{DA0B7842-07E6-487E-ADD3-991469060F04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>account</RootNamespace>
-    <AssemblyName>account</AssemblyName>
+    <RootNamespace>task</RootNamespace>
+    <AssemblyName>task</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^account\</OutputPath>
+    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^task\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^account\</OutputPath>
+    <OutputPath>..\..\bin\home\www.wanmei.com\account\^arc^task\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,19 +39,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountB.cs" />
-    <Compile Include="Account\AccountConfig.cs" />
-    <Compile Include="Account\Account.cs" />
-    <Compile Include="Account\AccountMgr.cs" />
-    <Compile Include="Account\AccountService.cs" />
-    <Compile Include="Account\ErrorCode_.cs" />
-    <Compile Include="Device\DeviceService.cs" />
-    <Compile Include="Device\DeviceStatus.cs" />
+    <Compile Include="Action\IAction.cs" />
+    <Compile Include="Action\ActionId.cs" />
+    <Compile Include="Action\ActionMgr.cs" />
+    <Compile Include="Closed\Closed.cs" />
+    <Compile Include="Closed\ClosedService.cs" />
+    <Compile Include="Condition\AndCondition.cs" />
+    <Compile Include="Condition\ConditionSingleton.cs" />
+    <Compile Include="Condition\ConditionStream.cs" />
+    <Compile Include="Condition\IConditon.cs" />
+    <Compile Include="Condition\NoCondition.cs" />
+    <Compile Include="Condition\OrCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\Startup.cs" />
+    <Compile Include="Task\TaskF.cs" />
+    <Compile Include="Task\TaskFMgr.cs" />
+    <Compile Include="Task\Task.cs" />
+    <Compile Include="Task\TaskMgr.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="%24assembly.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="%24descriptor.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\platform\platform.csproj">
@@ -61,18 +76,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="%24assembly.xml">
+    <None Include="config\closed.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="%24descriptor.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="config\accountConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="SqlScript\Account.sql" />
+    </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
