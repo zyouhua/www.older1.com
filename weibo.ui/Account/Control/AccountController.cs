@@ -23,15 +23,17 @@ namespace weibo.ui
         }
 
         [HttpGet]
-        public ErrorCode_ _loginAccount(string nName, string nPassward, uint nDeviceType)
+        public AccountC _loginAccount(string nName, string nPassward, uint nDeviceType)
         {
+            AccountC result_ = new AccountC();
             AccountService accountService_ = __singleton<AccountService>._instance();
             __tuple<ErrorCode_, Account> accountInfo_ = accountService_._loginAccount(nName, nPassward, nDeviceType);
+            result_.m_tErrorCode = accountInfo_._get_0();
             if (ErrorCode_.mSucess_ == accountInfo_._get_0())
             {
-
+                accountInfo_._get_1()._getAccountC(result_, nDeviceType);
             }
-            return ErrorCode_.mSucess_;
+            return result_;
         }
 
         [HttpGet]

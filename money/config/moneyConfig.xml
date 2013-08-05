@@ -3,7 +3,7 @@
   
   <moneys>
     
-    <__t Id="0" name="元" value="0" total="0" dayInc="0" dayDec="0" maxInc="0" maxDec="0" />
+    <__t id="0" name="元" value="0" total="0" dayInc="0" dayDec="0" maxInc="0" maxDec="0" />
 
   </moneys>
   

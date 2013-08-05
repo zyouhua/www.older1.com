@@ -7,6 +7,16 @@ namespace account
 {
     public class Account : PropertyMgr
     {
+        public void _getAccountC(AccountC nAccountC, uint nDeviceType)
+        {
+            if (mDeviceStatus.ContainsKey(nDeviceType))
+            {
+                nAccountC.m_tDeviceStatus = mDeviceStatus[nDeviceType];
+                nAccountC.m_tAccountId = mAccountId;
+                nAccountC.m_tTicks = mTicks;
+            }
+        }
+
         public void _addDeviceType(uint nDeviceType)
         {
             DeviceStatus deviceStatus_ = new DeviceStatus();

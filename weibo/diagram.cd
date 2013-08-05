@@ -14,5 +14,12 @@
       <FileName>Last\Status.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="weibo.StatusS" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Last\StatusS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="微软雅黑" Size="9" />
 </ClassDiagram>

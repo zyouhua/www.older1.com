@@ -4,7 +4,7 @@
     {
         public static void _runInit()
         {
-            mPropertyId = HashString._runHash(typeof(__t).FullName, 0x100);
+            mPropertyId = HashString._runCommon(typeof(__t).FullName);
         }
 
         public static uint _getPropertyId()

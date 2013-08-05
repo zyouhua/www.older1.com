@@ -22,6 +22,18 @@
             return mId;
         }
 
+        public uint m_tId
+        {
+            get { return mId; }
+            set { mId = value; }
+        }
+
+        public uint m_tType
+        {
+            get { return mType; }
+            set { mType = value; }
+        }
+
         public DeviceStatus()
         {
             mId = 0;

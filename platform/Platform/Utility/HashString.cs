@@ -1,12 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace platform
 {
     public class HashString
     {
+        public static ulong _runId(string nName)
+        {
+            long minute_ = 100000000;
+            long baseTime_ = 6349259520;
+            uint ticks_ = (uint)(DateTime.Now.Ticks / minute_ - baseTime_);
+            ulong result_ = (ulong)_runCommon(nName);
+            result_ <<= 32;
+            result_ += ticks_;
+            return result_;
+        }
+
+        public static uint _runCommon(string nName)
+        {
+            return _runHash(nName, 0x100);
+        }
+
+        public static uint _runComputer()
+        {
+            //86943643
+            return _runHash(@"computer", 0x100);
+        }
+        
+        public static uint _runCellphone()
+        {
+            //2197838273
+            return _runHash(@"cellphone", 0x150);
+        }
+
+        public static uint _runNameId(string nName)
+        {
+            return _runHash(nName, 0x50);
+        }
+
+        public static uint _runPasswardId(string nName)
+        {
+            return _runHash(nName, 0x300);
+        }
+
+        public static uint _runClusterID(string nName)
+        {
+            return _runHash(nName, 0x100);
+        }
+
+        public static uint _runServerID(string nName)
+        {
+            return _runHash(nName, 0x150);
+        }
+
+        public static uint _runDatabaseId(string nName)
+        {
+            return _runHash(nName, 0x200);
+        }
+
+        public static uint _runTableId(string nName)
+        {
+            return _runHash(nName, 0x250);
+        }
+
         public static uint _runHash(string nKey, uint nOffset)
         {
             byte [] bytes = Encoding.UTF8.GetBytes(nKey);

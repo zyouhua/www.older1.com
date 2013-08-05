@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
-using WebActivatorEx;
-using platform;
 using System.Web.Hosting;
+using WebActivatorEx;
+
+using platform;
 
 [assembly: PreApplicationStartMethod(typeof(startup.Startup), "_runStart")]
 namespace startup
@@ -19,7 +20,6 @@ namespace startup
 
         static void _initMvcEngine()
         {
-
             Assembly assembly = Assembly.GetAssembly(typeof(MvcApplication));
             MvcEngineSingleton mvcEngineSingleton_ = __singleton<MvcEngineSingleton>._instance();
             mvcEngineSingleton_._addAssembly(assembly);

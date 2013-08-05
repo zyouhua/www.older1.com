@@ -13,12 +13,8 @@ namespace account
 
         public void _runInit()
         {
-            uint computerType_ = HashString._runHash(@"computer", 0x100);
-            //86943643
-            mDeviceTypes.Add(computerType_);
-            uint cellphoneType_ = HashString._runHash(@"cellphone", 0x150);
-            //2197838273
-            mDeviceTypes.Add(cellphoneType_);
+            mDeviceTypes.Add(HashString._runComputer());
+            mDeviceTypes.Add(HashString._runCellphone());
         }
 
         public DeviceService()

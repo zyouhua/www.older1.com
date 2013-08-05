@@ -74,6 +74,24 @@ namespace account
             return result_;
         }
 
+        public Account _getAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
+        {
+            Account account_ = this._getAccount(nAccountName);
+            if (null != account_)
+            {
+                result_ = ErrorCode_.mFail_;
+            }
+            if (ErrorCode_.mSucess_ == result_)
+            {
+                result_ = account_._logout(nDeviceId, nDeviceType);
+                if (!account_._isOnline())
+                {
+                    mAccounts.Remove(account_._getAccountId());
+                }
+            }
+            return result_;
+        }
+
         ErrorCode_ _checkDevice(uint nDeviceType)
         {
             ErrorCode_ result_ = ErrorCode_.mSucess_;

@@ -13,12 +13,16 @@ BEGIN
 	DECLARE tableCount INT DEFAULT 10;
 	WHILE i < tableCount
 	DO
-		SET @STMT := CONCAT("CREATE  TABLE `Account_", FORMAT(i, 0), "` (
-					`Id` INT(10) UNSIGNED NOT NULL ,
-					`Name` VARCHAR(45) NOT NULL ,
-					`NickName` VARCHAR(45) NOT NULL ,
-					`Passward` VARCHAR(45) NOT NULL ,
-					`CreateTime` BIGINT NOT NULL ,
+		SET @STMT := CONCAT("CREATE  TABLE `account_", FORMAT(i, 0), "` (
+					`id` INT(10) UNSIGNED NOT NULL ,
+					`name` VARCHAR(45) NOT NULL ,
+					`nickName` VARCHAR(45) NOT NULL ,
+					`passward` VARCHAR(45) NOT NULL ,
+					`createTime` BIGINT NOT NULL ,
+					`clusterID` INT(10) UNSIGNED NOT NULL ,
+					`serverID` INT(10) UNSIGNED NOT NULL ,
+					`databaseId` INT(10) UNSIGNED NOT NULL ,
+					`tableId` INT(10) UNSIGNED NOT NULL ,
 					PRIMARY KEY (`Id`) )
 					ENGINE = MYISAM  DEFAULT CHARSET=utf8;");
 		PREPARE STMT FROM @STMT;

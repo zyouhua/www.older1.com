@@ -8,7 +8,7 @@ namespace account
     {
         public ErrorCode_ _createAccount(string nAccountName, string nNickname, string nPassward)
         {
-            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            uint hashName_ = HashString._runServerID(nAccountName);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = hashName_ % accountMgrCount_;
@@ -18,7 +18,7 @@ namespace account
 
         public __tuple<ErrorCode_, Account> _loginAccount(string nAccountName, string nPassward, uint nDeviceType)
         {
-            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            uint hashName_ = HashString._runServerID(nAccountName);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = hashName_ % accountMgrCount_;
@@ -28,7 +28,7 @@ namespace account
 
         public ErrorCode_ _logoutAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
         {
-            uint hashName_ = HashString._runHash(nAccountName, 0x100);
+            uint hashName_ = HashString._runServerID(nAccountName);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
             uint accountMgrIndex_ = hashName_ % accountMgrCount_;
@@ -36,22 +36,17 @@ namespace account
             return accountMgr_._logoutAccount(nAccountName, nDeviceId, nDeviceType);
         }
 
-        public bool _isAccountLogin(uint nHashName, uint nHashAccount, uint nAccountId)
+        public Account _getAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
         {
-            bool result_ = false;
+            uint hashName_ = HashString._runServerID(nAccountName);
             AccountConfig accountConfig_ = __singleton<AccountConfig>._instance();
             uint accountMgrCount_ = accountConfig_._getAccountMgrCount();
-            uint accountMgrIndex_ = nHashName % accountMgrCount_;
+            uint accountMgrIndex_ = hashName_ % accountMgrCount_;
             AccountMgr accountMgr_ = mAccountMgrs[accountMgrIndex_];
-            Account account_ = accountMgr_._getAccount(nHashAccount);
-            if ( (null != account_) && (account_._getAccountId() == nAccountId) )
-            {
-                result_ = true;
-            }
-            return result_;
+            return accountMgr_._getAccount(nAccountName, nDeviceId, nDeviceType);
         }
 
-        public void _runInit()
+          public void _runInit()
         {
             string accountConfigUrl_ = @"rid://account.accoutConfig";
             PlatformSingleton platformSingleton_ = __singleton<PlatformSingleton>._instance();

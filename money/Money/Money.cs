@@ -6,7 +6,7 @@ namespace money
     {
         public override void _serialize(ISerialize nSerialize)
         {
-            nSerialize._serialize(ref mId, @"Id");
+            nSerialize._serialize(ref mId, @"id");
             nSerialize._serialize(ref mValue, @"value");
             nSerialize._serialize(ref mTotal, @"total");
             nSerialize._serialize(ref mDayInc, @"dayInc");

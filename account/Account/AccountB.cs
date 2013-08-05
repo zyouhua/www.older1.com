@@ -8,14 +8,14 @@ namespace account
     {
         public static uint _accountId(string nAccountName)
         {
-            return HashString._runHash(nAccountName, 0x200);
+            return HashString._runNameId(nAccountName);
         }
 
         public ErrorCode_ _checkPassward(string nPassward)
         {
             ErrorCode_ result_ = ErrorCode_.mSucess_;
-            uint loginPassward_ = HashString._runHash(nPassward, 0x300);
-            uint hashPassward_ = HashString._runHash(mPassward, 0x300);
+            uint loginPassward_ = HashString._runPasswardId(nPassward);
+            uint hashPassward_ = HashString._runPasswardId(mPassward);
             if (loginPassward_ != hashPassward_)
             {
                 result_ = ErrorCode_.mPassward_;
@@ -32,10 +32,15 @@ namespace account
 
         public void _serialize(ISqlSerialize nSqlSerialize)
         {
-            nSqlSerialize._serialize(ref mAccountId, @"Id");
-            nSqlSerialize._serialize(ref mAccountName, @"Name");
-            nSqlSerialize._serialize(ref mPassward, @"Passward");
-            nSqlSerialize._serialize(ref mTicks, @"CreateTime");
+            nSqlSerialize._serialize(ref mAccountId, @"id");
+            nSqlSerialize._serialize(ref mAccountName, @"accountName");
+            nSqlSerialize._serialize(ref mNickName, @"nickName");
+            nSqlSerialize._serialize(ref mPassward, @"passward");
+            nSqlSerialize._serialize(ref mTicks, @"createTime");
+            nSqlSerialize._serialize(ref mClusterID, @"clusterID");
+            nSqlSerialize._serialize(ref mServerID, @"serverID");
+            nSqlSerialize._serialize(ref mDatabaseId, @"databaseId");
+            nSqlSerialize._serialize(ref mTableId, @"tableId");
         }
 
         public string _streamName()
@@ -53,9 +58,33 @@ namespace account
             return mAccountId;
         }
 
+        public uint _getClusterID()
+        {
+            return mClusterID;
+        }
+
+        public uint _getServerID()
+        {
+            return mServerID;
+        }
+
+        public uint _getDatabaseId()
+        {
+            return mDatabaseId;
+        }
+
+        public uint _getTableId()
+        {
+            return mTableId;
+        }
+
         public void _setAccountName(string nAccountName)
         {
             mAccountId = _accountId(nAccountName);
+            mClusterID = HashString._runClusterID(nAccountName);
+            mServerID = HashString._runServerID(nAccountName);
+            mDatabaseId = HashString._runDatabaseId(nAccountName);
+            mTableId = HashString._runTableId(nAccountName);
             mAccountName = nAccountName;
         }
 
@@ -101,6 +130,10 @@ namespace account
             mNickName = null;
             mPassward = null;
             mAccountMgrId = 0;
+            mClusterID = 0;
+            mServerID = 0;
+            mDatabaseId = 0;
+            mTableId = 0;
             mTicks = 0;
         }
 
@@ -109,6 +142,10 @@ namespace account
         string mAccountName;
         string mNickName;
         string mPassward;
+        uint mClusterID;
+        uint mServerID;
+        uint mDatabaseId;
+        uint mTableId;
         long mTicks;
     }
 }

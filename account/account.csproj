@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AccountC.cs" />
     <Compile Include="Account\AccountB.cs" />
     <Compile Include="Account\AccountConfig.cs" />
     <Compile Include="Account\Account.cs" />
