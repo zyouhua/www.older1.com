@@ -19,13 +19,9 @@ namespace weibo.ui
         public ErrorCode_ _createStatus(string nName, uint nDeviceId, uint nDeviceType, StatusS nStatusS)
         {
             AccountService accountService_ = __singleton<AccountService>._instance();
-            return accountService_._createAccount(nName, nNickname, nPassward);
-        }
-
-        public ErrorCode_ _logoutAccount(string nName, uint nDeviceId, uint nDeviceType)
-        {
-            AccountService accountService_ = __singleton<AccountService>._instance();
-            return accountService_._logoutAccount(nName, nDeviceId, nDeviceType);
+            Account account_ = accountService_._getAccount(nName, nDeviceId, nDeviceType);
+            StatusMgr statusMgr_ = account_._getProperty<StatusMgr>();
+            return ErrorCode_.mSucess_;
         }
     }
 }

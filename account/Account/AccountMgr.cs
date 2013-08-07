@@ -76,17 +76,12 @@ namespace account
 
         public Account _getAccount(string nAccountName, uint nDeviceId, uint nDeviceType)
         {
-            Account account_ = this._getAccount(nAccountName);
-            if (null != account_)
+            Account result_ = this._getAccount(nAccountName);
+            if (null != result_)
             {
-                result_ = ErrorCode_.mFail_;
-            }
-            if (ErrorCode_.mSucess_ == result_)
-            {
-                result_ = account_._logout(nDeviceId, nDeviceType);
-                if (!account_._isOnline())
+                if (result_._contain(nDeviceId, nDeviceType))
                 {
-                    mAccounts.Remove(account_._getAccountId());
+                    result_ = null;
                 }
             }
             return result_;

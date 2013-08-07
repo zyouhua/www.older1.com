@@ -156,6 +156,7 @@
     <Compile Include="Platform\Serialize\MySql\ISqlStream.cs" />
     <Compile Include="Platform\Property\PropertyId.cs" />
     <Compile Include="Platform\Thread\MissionPool\MissionPool.cs" />
+    <Compile Include="Platform\Property\PropertySink.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

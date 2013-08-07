@@ -44,6 +44,21 @@ namespace account
             return result_;
         }
 
+        public bool _contain(uint nDeviceId, uint nDeviceType)
+        {
+            bool result_ = true;
+            DeviceStatus deviceStatus_ = this._getDeviceStatus(nDeviceType);
+            if (null == deviceStatus_)
+            {
+                result_ = false;
+            }
+            if ((null != deviceStatus_) && (deviceStatus_._getId() != nDeviceId))
+            {
+                result_ = false;
+            }
+            return result_;
+        }
+
         public bool _isOnline()
         {
             return (mDeviceStatus.Count > 0);
